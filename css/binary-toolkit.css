@@ -1,0 +1,316 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #1a1a2e;
+  color: #eee;
+  font-family: 'Courier New', monospace;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 20px;
+  gap: 32px;
+}
+
+#main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#clock {
+  font-size: 1.4rem;
+  color: #00d4ff;
+  letter-spacing: 2px;
+  text-shadow: 0 0 8px #00d4ff88;
+  text-align: center;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #00d4ff22;
+}
+
+h1 {
+  margin-top: 10px;
+  font-size: 1.8rem;
+  color: #00d4ff;
+  letter-spacing: 4px;
+  text-shadow: 0 0 10px #00d4ff66;
+}
+
+#display {
+  font-size: 1.1rem;
+  color: #aaa;
+  letter-spacing: 1px;
+  line-height: 2;
+}
+
+#display .label {
+  display: inline-block;
+  width: 4.5rem;
+  text-align: right;
+}
+
+#display span { color: #fff; font-size: 1.3rem; }
+
+#right-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-self: flex-start;
+  position: sticky;
+  top: 20px;
+  flex-shrink: 0;
+  width: 420px;
+}
+
+#info-panel {
+  background: #0d1b2a;
+  border: 1px solid #00d4ff33;
+  border-radius: 10px;
+  padding: 16px;
+}
+
+#info-panel #display {
+  margin: 0 0 10px;
+  line-height: 2;
+}
+
+#bin-display {
+  font-size: 0.8rem;
+  color: #aaa;
+  letter-spacing: 1px;
+  text-align: center;
+  padding-top: 10px;
+  border-top: 1px solid #00d4ff22;
+}
+
+.bin-line {
+  display: block;
+  color: #00d4ff;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  margin-top: 4px;
+  word-break: break-all;
+  line-height: 1.8;
+}
+
+#abacus {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 10px;
+  margin-top: 16px;
+  width: 100%;
+  max-width: 640px;
+}
+
+.bit-tile {
+  background: #0d1b2a;
+  border: 1px solid #00d4ff22;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 6px 8px;
+  gap: 6px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.bit-tile:hover { border-color: #00d4ff66; }
+.bit-tile.on { border-color: #00d4ff99; background: #0a2a3a; }
+
+.bit-label {
+  font-size: 0.7rem;
+  color: #555;
+  letter-spacing: 0.5px;
+}
+
+.bead {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #555, #222);
+  border: 2px solid #444;
+  transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.bead.on {
+  background: radial-gradient(circle at 35% 35%, #00eeff, #0077aa);
+  border-color: #00d4ff;
+  box-shadow: 0 0 10px #00d4ffaa;
+}
+
+.bit-value {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.bit-value.on { color: #00d4ff; }
+
+#controls {
+  margin-top: 28px;
+  display: flex;
+  gap: 12px;
+}
+
+button {
+  padding: 8px 20px;
+  background: #0d3b5e;
+  color: #00d4ff;
+  border: 1px solid #00d4ff55;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+}
+
+button:hover { background: #1a5a8a; }
+
+button img {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  display: block;
+}
+
+#manual-input {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+#bit-config {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: #aaa;
+  font-size: 0.9rem;
+}
+
+#bit-config input {
+  width: 70px;
+  padding: 7px 10px;
+  background: #0d1b2a;
+  border: 1px solid #00d4ff44;
+  border-radius: 6px;
+  color: #fff;
+  font-family: inherit;
+  font-size: 1rem;
+  text-align: center;
+}
+
+#arithmetic {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+#arithmetic button { padding: 8px; }
+
+#arithmetic input, #manual-input input {
+  width: 220px;
+  flex-shrink: 0;
+  padding: 7px 10px;
+  background: #0d1b2a;
+  border: 1px solid #00d4ff44;
+  border-radius: 6px;
+  color: #fff;
+  font-family: inherit;
+  font-size: 1rem;
+  text-align: center;
+}
+
+#overflow-flag {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: #ff4466;
+  letter-spacing: 1px;
+  min-height: 1.2em;
+  text-shadow: 0 0 6px #ff446688;
+}
+
+#calendar {
+  background: #0d1b2a;
+  border: 1px solid #00d4ff33;
+  border-radius: 10px;
+  padding: 16px;
+}
+
+#cal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+#cal-header span {
+  color: #00d4ff;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+}
+
+#cal-header button {
+  padding: 4px 10px;
+  font-size: 0.85rem;
+}
+
+#cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  text-align: center;
+}
+
+.cal-day-name {
+  font-size: 0.7rem;
+  color: #555;
+  padding-bottom: 4px;
+}
+
+#cal-date {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #aaa;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #00d4ff22;
+}
+
+#cal-date span {
+  color: #fff;
+  display: block;
+  font-size: 1rem;
+  margin-top: 4px;
+  letter-spacing: 1px;
+}
+
+.cal-day {
+  font-size: 0.82rem;
+  padding: 5px 2px;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #aaa;
+}
+
+.cal-day:hover:not(.empty) { background: #00d4ff11; }
+
+.cal-day.today {
+  background: #00d4ff22;
+  color: #00d4ff;
+  border: 1px solid #00d4ff66;
+  font-weight: bold;
+  text-shadow: 0 0 6px #00d4ff88;
+}
+
+.cal-day.selected {
+  background: #00d4ff44;
+  color: #fff;
+  border: 1px solid #00d4ffaa;
+}
+
+.cal-day.empty { visibility: hidden; }

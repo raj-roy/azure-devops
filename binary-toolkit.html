@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Binary Toolkit</title>
+<link rel="stylesheet" href="css/binary-toolkit.css" />
+</head>
+<body>
+
+<div id="main">
+<h1>BINARY TOOLKIT</h1>
+
+<div id="bit-config">
+  Bits: <input type="number" id="bitInput" min="1" max="64" value="8" />
+  <button onclick="applyBits()">Apply</button>
+</div>
+<div id="abacus"></div>
+
+<div id="controls">
+  <button onclick="increment()">+1</button>
+  <button onclick="decrement()">−1</button>
+  <button onclick="reset()">Reset</button>
+</div>
+
+<div id="manual-input">
+  <input type="text" id="numInput" placeholder="0" />
+  <button onclick="setFromInput()">Set</button>
+</div>
+
+<div id="arithmetic">
+  <input type="text" id="arithInput" placeholder="operand" />
+  <button onclick="arithOp(1)" title="Add"><img src="icons/add.svg" alt="Add" /></button>
+  <button onclick="arithOp(-1)" title="Subtract"><img src="icons/subtract.svg" alt="Subtract" /></button>
+</div>
+<div id="overflow-flag"></div>
+
+</div>
+
+<div id="right-col">
+
+<div id="info-panel">
+  <div id="display">
+    <div><span class="label">Dec</span>: <span id="dec">0</span></div>
+    <div><span class="label">Hex</span>: <span id="hex">0x00</span></div>
+  </div>
+  <div id="bin-display">
+    Binary
+    <span class="bin-line" id="bin-top"></span>
+    <span class="bin-line" id="bin-bot"></span>
+  </div>
+</div>
+
+<div id="calendar">
+  <div id="clock">00:00:00</div>
+  <div id="cal-date">Selected Date<span id="cal-date-text"></span></div>
+  <div id="cal-header">
+    <button onclick="calNav(-1)">&#8249;</button>
+    <span id="cal-title"></span>
+    <button onclick="calNav(1)">&#8250;</button>
+  </div>
+  <div style="text-align:center; margin-bottom: 8px;">
+    <button onclick="calToday()">Today</button>
+  </div>
+  <div id="cal-grid"></div>
+</div>
+
+</div>
+
+<script src="js/binary-toolkit.js"></script>
+</body>
+</html>
